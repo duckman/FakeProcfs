@@ -67,20 +67,21 @@ public class ProcThread implements Runnable
             
             for(int cpu=0;cpu<stat.length;cpu++)
             {
-                int count = 0;
-                for(int time=1;time<stat[cpu].length;time++)
+                long count = 0;
+                for(int time=0;time<3;time++)
                 {
-                    stat[cpu][time] += rand.nextInt(10);
-                    count += stat[cpu][time];
+                    long add = rand.nextInt(333);
+                    stat[cpu][time] += add;
+                    count += add;
                 }
-                stat[cpu][0] = count;
+                stat[cpu][3] += 1000-count;
             }
             
             out.print("cpu ");
-            for(int cpu=0;cpu<stat.length;cpu++)
+            for(int time=0;time<stat[0].length;time++)
             {
                 int count = 0;
-                for(int time=0;time<stat[cpu].length;time++)
+                for(int cpu=0;cpu<stat.length;cpu++)
                 {
                     count += stat[cpu][time];
                 }
